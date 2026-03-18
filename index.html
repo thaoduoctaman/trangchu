@@ -1,167 +1,185 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Thảo Dược Tâm An</title>
+<title>Thảo Dược Tâm An - Cà Gai Leo, An Xoa, Lá Vằng</title>
 
-<meta name="description" content="Thảo Dược Tâm An chuyên bán Cà Gai Leo, An Xoa, Lá Vằng">
+<meta name="description" content="Thảo Dược Tâm An chuyên cung cấp dược liệu thiên nhiên: Cà Gai Leo, An Xoa, Lá Vằng.">
 
-<meta name="keywords" content="thảo dược, cà gai leo, an xoa, lá vằng">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="thảo dược tâm an, cà gai leo, an xoa, lá vằng">
 
 <style>
 
 body{
-font-family:Arial;
 margin:0;
-background:#eef5ee;
+font-family:Arial;
+background:url("https://images.unsplash.com/photo-1501004318641-b39e6451bec6") center/cover fixed;
 }
 
 header{
-background:#2f6b2f;
+background:#2e7d32;
 color:white;
-padding:15px;
+padding:12px;
 display:flex;
 justify-content:space-between;
 align-items:center;
+flex-wrap:wrap;
 }
 
 nav a{
 color:white;
-margin:10px;
+margin:8px;
 text-decoration:none;
 font-weight:bold;
 cursor:pointer;
 }
 
-nav a:hover{
-color:yellow;
-}
-
 .container{
-padding:30px;
-}
-
-.page{
-display:none;
+background:rgba(255,255,255,0.92);
+margin:15px;
+padding:20px;
+border-radius:10px;
 }
 
 .products{
 display:flex;
-gap:20px;
+gap:15px;
 flex-wrap:wrap;
 }
 
 .product{
-border:1px solid #ccc;
-padding:10px;
-width:220px;
 background:white;
 border-radius:8px;
+padding:10px;
+width:220px;
+box-shadow:0 2px 10px rgba(0,0,0,0.2);
 }
 
 .product img{
 width:100%;
 height:150px;
 object-fit:cover;
+border-radius:5px;
 }
 
+.star{color:gold}
+
 button{
-background:#2f6b2f;
+background:#2e7d32;
 color:white;
 border:none;
-padding:8px 15px;
+padding:8px 12px;
 cursor:pointer;
 border-radius:5px;
 }
 
-input,textarea{
-width:100%;
-padding:10px;
-margin-top:10px;
-}
+button:hover{background:#1b5e20}
 
 footer{
-background:#2f6b2f;
+background:#2e7d32;
 color:white;
 text-align:center;
 padding:15px;
-margin-top:40px;
 }
 
-.cart-box{
+.page{display:none}
+
+.cart{
+position:fixed;
+right:-350px;
+top:0;
+width:320px;
+height:100%;
 background:white;
+box-shadow:-3px 0 10px rgba(0,0,0,0.3);
+padding:20px;
+transition:0.4s;
+overflow:auto;
+}
+
+.cart.open{right:0}
+
+input,textarea{
+width:100%;
 padding:10px;
-border-radius:5px;
-color:black;
+margin-top:8px;
+}
+
+.zalo{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#0084ff;
+color:white;
+padding:12px 16px;
+border-radius:50px;
+font-weight:bold;
+text-decoration:none;
+}
+
+.qr{
+width:200px;
+margin-top:10px;
+}
+
+@media(max-width:600px){
+
+.products{justify-content:center}
+
+header{flex-direction:column}
+
 }
 
 </style>
-
 </head>
-
 
 <body>
 
-
 <header>
 
-<h2>THẢO DƯỢC TÂM AN</h2>
+<h2>🌿 Thảo Dược Tâm An</h2>
 
 <nav>
 
-<a onclick="showPage('home')">Giới thiệu</a>
-<a onclick="showPage('products')">Sản phẩm</a>
-<a onclick="showPage('cart')">Giỏ hàng</a>
-<a onclick="showPage('feedback')">Góp ý</a>
-<a onclick="showPage('contact')">Liên hệ</a>
-<a onclick="showPage('admin')">Admin</a>
+<a onclick="show('home')">Giới thiệu</a>
+<a onclick="show('products')">Sản phẩm</a>
+<a onclick="show('contact')">Liên hệ</a>
 
 </nav>
 
-<div class="cart-box">
-
-🛒 <span id="cart-count">0</span>
-
+<div onclick="toggleCart()" style="cursor:pointer">
+🛒 <span id="count">0</span>
 </div>
 
 </header>
 
 
+<!-- TRANG CHỦ -->
 
-<div class="container">
+<div class="container page" id="home">
 
-
-<!-- GIỚI THIỆU -->
-
-<div id="home" class="page">
-
-<h2>Giới thiệu</h2>
+<h2>Thảo Dược Tâm An</h2>
 
 <p>
 
-Thảo Dược Tâm An chuyên cung cấp các loại thảo dược thiên nhiên:
-
-Cà Gai Leo – An Xoa – Lá Vằng – Dược liệu sạch hỗ trợ sức khỏe.
+Chuyên cung cấp thảo dược thiên nhiên chất lượng:  
+Cà Gai Leo – An Xoa – Lá Vằng.
 
 </p>
 
 </div>
 
 
-
 <!-- SẢN PHẨM -->
 
-<div id="products" class="page">
+<div class="container page" id="products">
 
 <h2>Sản phẩm</h2>
 
-<div class="products" id="product-list">
-
+<div class="products">
 
 <div class="product">
 
@@ -171,10 +189,11 @@ Cà Gai Leo – An Xoa – Lá Vằng – Dược liệu sạch hỗ trợ sức
 
 <p>120000đ</p>
 
+<p class="star">⭐⭐⭐⭐⭐</p>
+
 <button onclick="addCart('Cà Gai Leo',120000)">Thêm giỏ</button>
 
 </div>
-
 
 <div class="product">
 
@@ -184,10 +203,11 @@ Cà Gai Leo – An Xoa – Lá Vằng – Dược liệu sạch hỗ trợ sức
 
 <p>100000đ</p>
 
+<p class="star">⭐⭐⭐⭐</p>
+
 <button onclick="addCart('An Xoa',100000)">Thêm giỏ</button>
 
 </div>
-
 
 <div class="product">
 
@@ -197,27 +217,43 @@ Cà Gai Leo – An Xoa – Lá Vằng – Dược liệu sạch hỗ trợ sức
 
 <p>90000đ</p>
 
+<p class="star">⭐⭐⭐⭐⭐</p>
+
 <button onclick="addCart('Lá Vằng',90000)">Thêm giỏ</button>
 
 </div>
 
-
 </div>
 
 </div>
 
+
+<!-- LIÊN HỆ -->
+
+<div class="container page" id="contact">
+
+<h2>Liên hệ</h2>
+
+<p>📞 Zalo / Hotline: <b>0964307247</b></p>
+
+<h3>Thanh toán MoMo</h3>
+
+<img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=0964307247">
+
+<p>Quét QR để thanh toán MoMo</p>
+
+</div>
 
 
 <!-- GIỎ HÀNG -->
 
-<div id="cart" class="page">
+<div class="cart" id="cart">
 
 <h2>Giỏ hàng</h2>
 
-<ul id="cart-items"></ul>
+<ul id="items"></ul>
 
-<h3>Tổng: <span id="total">0</span> đ</h3>
-
+<h3>Tổng: <span id="total">0</span>đ</h3>
 
 <h3>Thông tin nhận hàng</h3>
 
@@ -225,77 +261,13 @@ Cà Gai Leo – An Xoa – Lá Vằng – Dược liệu sạch hỗ trợ sức
 
 <input id="phone" placeholder="Số điện thoại">
 
-<input id="address" placeholder="Địa chỉ nhận hàng">
+<input id="address" placeholder="Địa chỉ">
 
 <textarea id="note" placeholder="Ghi chú"></textarea>
 
-<button onclick="checkout()">Thanh toán</button>
+<button onclick="checkout()">Đặt hàng</button>
 
 </div>
-
-
-
-<!-- GÓP Ý -->
-
-<div id="feedback" class="page">
-
-<h2>Góp ý</h2>
-
-<input placeholder="Tên">
-
-<textarea placeholder="Nội dung góp ý"></textarea>
-
-<button>Gửi</button>
-
-</div>
-
-
-
-<!-- LIÊN HỆ -->
-
-<div id="contact" class="page">
-
-<h2>Liên hệ</h2>
-
-<p>Hotline: 0901 45 05 05</p>
-
-<p>Email: thaoduoctaman@gmail.com</p>
-
-</div>
-
-
-
-<!-- ADMIN -->
-
-<div id="admin" class="page">
-
-<h2>Admin Login</h2>
-
-<input id="user" placeholder="Username">
-
-<input id="pass" type="password" placeholder="Password">
-
-<button onclick="login()">Đăng nhập</button>
-
-
-<div id="admin-panel" style="display:none">
-
-<h3>Thêm sản phẩm</h3>
-
-<input id="pname" placeholder="Tên sản phẩm">
-
-<input id="pprice" placeholder="Giá">
-
-<button onclick="addProduct()">Đăng sản phẩm</button>
-
-</div>
-
-</div>
-
-
-
-</div>
-
 
 
 <footer>
@@ -305,130 +277,94 @@ Cà Gai Leo – An Xoa – Lá Vằng – Dược liệu sạch hỗ trợ sức
 </footer>
 
 
+<!-- CHAT ZALO -->
+
+<a class="zalo" href="https://zalo.me/0964307247" target="_blank">
+
+Chat Zalo
+
+</a>
+
 
 <script>
 
-let cart=[];
+let cart=[]
 
-function showPage(id){
+function show(id){
 
-document.querySelectorAll(".page").forEach(p=>p.style.display="none");
+document.querySelectorAll(".page").forEach(p=>p.style.display="none")
 
-document.getElementById(id).style.display="block";
-
-if(id=="cart") loadCart();
+document.getElementById(id).style.display="block"
 
 }
 
-showPage("home");
+show("home")
 
+function toggleCart(){
+
+document.getElementById("cart").classList.toggle("open")
+
+loadCart()
+
+}
 
 function addCart(name,price){
 
-cart.push({name,price});
+cart.push({name,price})
 
-document.getElementById("cart-count").innerText=cart.length;
-
-alert("Đã thêm vào giỏ");
+document.getElementById("count").innerText=cart.length
 
 }
-
 
 function loadCart(){
 
-let list=document.getElementById("cart-items");
+let list=document.getElementById("items")
 
-list.innerHTML="";
+list.innerHTML=""
 
-let total=0;
+let total=0
 
 cart.forEach(i=>{
 
-let li=document.createElement("li");
+let li=document.createElement("li")
 
-li.innerText=i.name+" - "+i.price+"đ";
+li.innerText=i.name+" - "+i.price+"đ"
 
-list.appendChild(li);
+list.appendChild(li)
 
-total+=i.price;
+total+=i.price
 
-});
+})
 
-document.getElementById("total").innerText=total;
+document.getElementById("total").innerText=total
 
 }
-
 
 function checkout(){
 
-let name=document.getElementById("name").value;
+let name=document.getElementById("name").value
 
-let phone=document.getElementById("phone").value;
+let phone=document.getElementById("phone").value
 
-let address=document.getElementById("address").value;
+let address=document.getElementById("address").value
 
 if(name==""||phone==""||address==""){
 
-alert("Nhập đủ thông tin");
+alert("Vui lòng nhập đầy đủ thông tin")
 
-return;
-
-}
-
-alert("Đặt hàng thành công!");
-
-cart=[];
-
-location.reload();
+return
 
 }
 
+alert("Đặt hàng thành công! Admin sẽ liên hệ.")
 
-function login(){
+cart=[]
 
-let u=document.getElementById("user").value;
-
-let p=document.getElementById("pass").value;
-
-if(u=="admin" && p=="tdtaman@123"){
-
-document.getElementById("admin-panel").style.display="block";
-
-}else{
-
-alert("Sai tài khoản");
-
-}
-
-}
-
-
-function addProduct(){
-
-let name=document.getElementById("pname").value;
-
-let price=document.getElementById("pprice").value;
-
-let html=`
-
-<div class="product">
-
-<h3>${name}</h3>
-
-<p>${price}đ</p>
-
-<button onclick="addCart('${name}',${price})">Thêm giỏ</button>
-
-</div>
-
-`;
-
-document.getElementById("product-list").innerHTML+=html;
+location.reload()
 
 }
 
 </script>
-
 
 </body>
 </html>
