@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Thảo Dược Tâm An</title>
+
+<style>
+
+body{
+font-family: Arial;
+margin:0;
+background:url("https://images.unsplash.com/photo-1501004318641-b39e6451bec6") no-repeat center;
+background-size:cover;
+background-attachment:fixed;
+}
+
+header{
+background:#2f6b2f;
+color:white;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+nav a{
+color:white;
+margin:10px;
+text-decoration:none;
+font-weight:bold;
+}
+
+nav a:hover{
+color:yellow;
+}
+
+.top-right{
+display:flex;
+align-items:center;
+}
+
+.cart{
+margin-left:15px;
+background:white;
+color:black;
+padding:5px 10px;
+border-radius:5px;
+}
+
+section{
+background:rgba(255,255,255,0.9);
+margin:30px;
+padding:30px;
+border-radius:10px;
+}
+
+.products{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.product{
+width:220px;
+border:1px solid #ccc;
+border-radius:10px;
+padding:10px;
+text-align:center;
+background:white;
+}
+
+.product img{
+width:100%;
+height:150px;
+object-fit:cover;
+border-radius:8px;
+}
+
+button{
+background:#2f6b2f;
+color:white;
+border:none;
+padding:8px 15px;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4f1d;
+}
+
+footer{
+text-align:center;
+padding:20px;
+background:#2f6b2f;
+color:white;
+}
+
+input,textarea{
+width:100%;
+padding:10px;
+margin-top:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h2>THẢO DƯỢC TÂM AN</h2>
+
+<nav>
+
+<a href="#gioithieu" data-vi="Giới thiệu" data-en="About">Giới thiệu</a>
+<a href="#sanpham" data-vi="Sản phẩm" data-en="Products">Sản phẩm</a>
+<a href="#gopy" data-vi="Góp ý" data-en="Feedback">Góp ý</a>
+<a href="#lienhe" data-vi="Liên hệ" data-en="Contact">Liên hệ</a>
+<a href="#admin">Admin</a>
+
+</nav>
+
+<div class="top-right">
+
+<select id="lang">
+<option value="vi">🇻🇳</option>
+<option value="en">🇺🇸</option>
+</select>
+
+<div class="cart">
+🛒 <span id="cart-count">0</span>
+</div>
+
+</div>
+
+</header>
+
+
+<section id="gioithieu">
+
+<h2 data-vi="Giới thiệu" data-en="About">Giới thiệu</h2>
+
+<p data-vi="Thảo Dược Tâm An chuyên cung cấp các loại thảo dược thiên nhiên như Cà Gai Leo, An Xoa, Lá Vằng, giúp hỗ trợ sức khỏe."
+data-en="Tam An Herbal specializes in natural herbs such as Ca Gai Leo, An Xoa, and La Vang for health support.">
+
+Thảo Dược Tâm An chuyên cung cấp các loại thảo dược thiên nhiên như Cà Gai Leo, An Xoa, Lá Vằng, giúp hỗ trợ sức khỏe.
+
+</p>
+
+</section>
+
+
+
+<section id="sanpham">
+
+<h2 data-vi="Sản phẩm" data-en="Products">Sản phẩm</h2>
+
+<div class="products">
+
+<div class="product">
+
+<img src="https://images.unsplash.com/photo-1615486360277-6c8b8a2f4c7c">
+
+<h3>Cà Gai Leo</h3>
+
+<p>120.000đ</p>
+
+<button onclick="addCart()">Thêm vào giỏ</button>
+
+</div>
+
+
+<div class="product">
+
+<img src="https://images.unsplash.com/photo-1514996937319-344454492b37">
+
+<h3>An Xoa</h3>
+
+<p>100.000đ</p>
+
+<button onclick="addCart()">Thêm vào giỏ</button>
+
+</div>
+
+
+<div class="product">
+
+<img src="https://images.unsplash.com/photo-1471193945509-9ad0617afabf">
+
+<h3>Lá Vằng</h3>
+
+<p>90.000đ</p>
+
+<button onclick="addCart()">Thêm vào giỏ</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section id="gopy">
+
+<h2 data-vi="Góp ý" data-en="Feedback">Góp ý</h2>
+
+<input placeholder="Tên">
+
+<textarea placeholder="Nội dung góp ý"></textarea>
+
+<button>Gửi</button>
+
+</section>
+
+
+
+<section id="lienhe">
+
+<h2 data-vi="Liên hệ" data-en="Contact">Liên hệ</h2>
+
+<p>Hotline: 0901 45 05 05</p>
+
+<p>Email: thaoduoctaman@gmail.com</p>
+
+</section>
+
+
+
+<section id="admin">
+
+<h2>Admin Login</h2>
+
+<input placeholder="Username">
+
+<input type="password" placeholder="Password">
+
+<button>Đăng nhập</button>
+
+</section>
+
+
+<footer>
+
+@2026 Thao Duoc Tam An - Mr.Thien
+
+</footer>
+
+
+
+<script>
+
+let cart=0;
+
+function addCart(){
+
+cart++;
+
+document.getElementById("cart-count").innerText=cart;
+
+}
+
+
+document.getElementById("lang").addEventListener("change",function(){
+
+let lang=this.value;
+
+document.querySelectorAll("[data-vi]").forEach(el=>{
+
+el.innerText=el.getAttribute("data-"+lang);
+
+})
+
+})
+
+</script>
+
+</body>
+</html>
